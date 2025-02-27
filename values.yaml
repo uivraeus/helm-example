@@ -1,0 +1,8 @@
+hello-one:
+  service:
+    port: 30080
+
+hello-two:
+  service:
+    port: 30080
+    
