@@ -4,5 +4,5 @@ hello-one:
 
 hello-two:
   service:
-    port: 31080
+    port: 32080
     
