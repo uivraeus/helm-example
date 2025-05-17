@@ -1,6 +1,6 @@
 hello-one:
   service:
-    port: 31080
+    port: 32080
 
 hello-two:
   service:
