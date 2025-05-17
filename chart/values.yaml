@@ -1,8 +1,8 @@
 hello-one:
   service:
-    port: 30080
+    port: 31080
 
 hello-two:
   service:
-    port: 30080
+    port: 31080
     
