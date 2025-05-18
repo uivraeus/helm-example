@@ -1,13 +1,9 @@
 apiVersion: v2
-name: hello-umbrella
-description: Umbrella chart example
-version: 2.0.0
-dependencies:
-  - name: hello-world
-    repository: https://helm.github.io/examples
-    version: 0.1.0
-    alias: hello-one
-  - name: hello-world
-    repository: https://helm.github.io/examples
-    version: 0.1.0
-    alias: hello-two
+name: combikubecourse
+description: A Helm chart for exercise 4.5
+
+type: application
+
+version: 0.0.2
+
+appVersion: "0.0.1"
