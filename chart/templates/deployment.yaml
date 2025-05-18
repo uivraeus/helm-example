@@ -6,6 +6,7 @@ metadata:
   labels:
     {{- include "combikubecourse.labels" $ | nindent 4 }}
 spec:
+  revisionHistoryLimit: 0
 {{- with $spec }}
   replicas: {{ .replicaCount | default 1 }}
   selector:
