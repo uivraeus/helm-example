@@ -27,7 +27,7 @@ deployments:
       tag: "1"
     extraEnvVars:
       - name: SIGNAL_TYPE
-        value: "sine"
+        value: "square"
       - name: RABBITMQ_VHOST
         value: "demo"
   consumer:
