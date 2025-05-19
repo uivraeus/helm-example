@@ -1,74 +1,40 @@
-########################################
-# Default values for this helm chart   #
-# Update parameters for your release   #
-########################################
+combikubecourse:
+  rabbitmq:
+    url: "rabbitmq.messagebroker.svc.cluster.local"
+    port: "5672"
+    vhost: "demo"
+    queue: "argo-example"
+    exchange: "signal"
+    auth:
+      existingSecret: "rabbitmq-credentials"
 
-rabbitmq:
-  url: "rabbitmq.messagebroker.svc.cluster.local"
-  port: "5672"
-  vhost: "demo"
-  queue: "argo-example"
-  exchange: "signal"
-  auth:
-    username: ""
-    password: ""
-    existingSecret: "rabbitmq-credentials "
+  deployments:
+    producer:
+      replicaCount: 1
+      image:
+        repository: "combikubecourse.azurecr.io/demo/producer"
+        tag: "1"
+      extraEnvVars:
+        - name: SIGNAL_TYPE
+          value: "square"
+        - name: RABBITMQ_VHOST
+          value: "demo"
+    consumer:
+      replicaCount: 1
+      image:
+        repository: "combikubecourse.azurecr.io/demo/consumer"
+        tag: "1"
+      extraEnvVars:
+        - name: PYTHONUNBUFFERED
+          value: "1"
+        - name: CONFIG_PATH
+          value: "/config"        
+      volumes:
+        - name: config
+          configMap:
+            name: conf
 
-influxdb:
-  enabled: false
-  bucket: ""
-  port: ""
-
-deployments:
-  producer:
-    replicaCount: 1
-    image:
-      repository: "combikubecourse.azurecr.io/demo/producer"
-      tag: "1"
-    extraEnvVars:
-      - name: SIGNAL_TYPE
-        value: "square"
-      - name: RABBITMQ_VHOST
-        value: "demo"
-  consumer:
-    replicaCount: 1
-    image:
-      repository: "combikubecourse.azurecr.io/demo/consumer"
-      tag: "1"
-    extraEnvVars:
-      - name: PYTHONUNBUFFERED
-        value: "1"
-      - name: CONFIG_PATH
-        value: "/config"
-      - name: INFLUXDB_ENABLE
-        value: ""
-      - name: INFLUXDB_URL
-        value: ""
-    volumes:
-      - name: config
-        configMap:
-          name: conf
-
-    # Additional volumeMounts on the output Deployment definition.
-    volumeMounts:
-      - name: config
-        mountPath: /config
-
-########################################
-#  Optional configuration parameters   #
-########################################
-
-nameOverride: ""
-fullnameOverride: ""
-imagePullSecrets: []
-
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Automatically mount a ServiceAccount's API credentials?
-  automount: false
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
+      # Additional volumeMounts on the output Deployment definition.
+      volumeMounts:
+        - name: config
+          mountPath: /config

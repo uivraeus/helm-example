@@ -1,9 +1,14 @@
 apiVersion: v2
-name: combikubecourse
-description: A Helm chart for exercise 4.5
+name: combikubecourse-umbrella
+description: Umbrella chart example
 
 type: application
 
 version: 0.0.2
 
-appVersion: "0.0.1"
+dependencies:
+  - name: combikubecourse
+    repository: oci://combikubepublic.azurecr.io/charts
+    version: 0.0.2
+
+
