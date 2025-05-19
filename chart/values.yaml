@@ -1,4 +1,6 @@
 combikubecourse:
+  enabled: true
+  
   rabbitmq:
     url: "rabbitmq.messagebroker.svc.cluster.local"
     port: "5672"

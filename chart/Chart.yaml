@@ -8,6 +8,7 @@ version: 0.0.2
 
 dependencies:
   - name: combikubecourse
+    condition: combikubecourse.enabled
     repository: oci://combikubepublic.azurecr.io/charts
     version: 0.0.2
 
