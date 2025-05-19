@@ -16,7 +16,7 @@ combikubecourse:
         tag: "1"
       extraEnvVars:
         - name: SIGNAL_TYPE
-          value: "square"
+          value: "sine"
         - name: RABBITMQ_VHOST
           value: "demo"
     consumer:
