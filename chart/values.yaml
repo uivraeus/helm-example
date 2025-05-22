@@ -12,7 +12,7 @@ combikubecourse:
 
   deployments:
     producer:
-      replicaCount: 1
+      replicaCount: 3
       image:
         repository: "combikubecourse.azurecr.io/demo/producer"
         tag: "1"
